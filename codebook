@@ -1,0 +1,21 @@
+This code book describes the data used in this project and steps to make it tidy. The data was capture from 30 smartphone users who performed 6 differrent activities while wearing their phones.
+
+Description of the raw data files:
+
+#0 features.txt: Names of 561 features
+#1 activity_labels.txt: ID and names for the 6 activities
+
+#2 X_test.txt: 2947 observations for 9 of the 30 volunteers.
+#3 subject_test.txt: The subject ID for each observation in X_test.txt.
+#4 y_test.txt: Activity IDs for wach observation in X_test.txt.
+
+#5 X_train.txt: 7352 observations from 21 subjects
+#6 subject_train.txt: The subject ID for each observation in X_train.txt.
+#7 y_train.txt: Activity IDs for wach observation in X_train.txt.
+
+run_analysis.R makes the data tidy by the flowing the steps below:
+
+1. All features from #0 are loaded and filtered by "mean/std" into #0f. Read labels from #1
+2. Files #2, #3 and #4 are loaded into tables. Coloums of table #2 is named as #0, and filtered by #0f. Lables from #1 are append to table #4 and its columns are named as "Activity ID"" and "Activitiy Label". ID coloumn of #3 is named as "subject". The processed tables of #2 #3 and #4 are combined into a big table
+3. Step 2 is executed for fiels #5 #6 and #7 
+4. The output tables from steps 2 and 3 are merged into a final table. The final table is first molten by feature name and value per the activity of subject id. The moleten data is then casted into a tidy data set by averaging all features from "subject-activity" IDs. The tidy data is then written as "./tidy_data.txt"
